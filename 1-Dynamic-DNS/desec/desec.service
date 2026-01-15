@@ -1,0 +1,18 @@
+[Unit]
+Description=Scheduled task for aufar (replaces cron)
+# Optional: If the script relies on the network, add these two lines to ensure network availability first
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+# The absolute path of the task/script to execute
+ExecStart=/usr/bin/python3 /home/aufar/desec/desec.py
+# Specify the user to run the task (use aufar instead of root for security)
+User=aufar
+Group=aufar
+# Optional: Restart the task only if it fails
+Restart=always
+RestartSec=30
+
+[Install]
+# No need for auto - startup settings here, as it will be triggered by the time

@@ -1,0 +1,19 @@
+[Unit]
+Description=Timer for aufar's scheduled task
+
+[Timer]
+Unit=duckpy.service
+# Scheduling rule: Run every minute (modify this line to change the frequency)
+# Run the task IMMEDIATELY when the timer is enabled (starts from "now")
+OnActiveSec=0
+# Repeat every 5 minutes after the first run (no fixed hour anchor)
+OnUnitActiveSec=5min
+# Optional: Run missed tasks if the system was shut down (persists across reboots)
+Persistent=true
+
+# Optional: Add a random 10 - second delay to avoid resource spikes
+RandomizedDelaySec=10s
+
+[Install]
+# Set the timer to start automatically when the system enters multi - user mode
+WantedBy=timers.target
